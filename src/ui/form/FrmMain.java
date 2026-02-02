@@ -69,11 +69,13 @@ public class FrmMain extends javax.swing.JFrame {
     public void handleResponse(Response response){
        if (response.getResult() instanceof List) {
             List<User> ulogovani = (List<User>) response.getResult();
+            
             cbKorisnici.removeAllItems();
             cbKorisnici.addItem("SVI"); // Ovde "SVI" ostaje String, zato je cbKorisnici<Object> ili <String>
+            
             for (User u : ulogovani) {
                 if (!u.equals(currentUser)) {
-                    cbKorisnici.addItem(u.toString()); // Ili samo u, ako je combo box tipa User
+                    cbKorisnici.addItem(u); // Ili samo u, ako je combo box tipa User
                 }
             }
         } else if (response.getResult() instanceof Message) {
@@ -338,7 +340,7 @@ public class FrmMain extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPosalji;
-    private javax.swing.JComboBox<String> cbKorisnici;
+    private javax.swing.JComboBox<Object> cbKorisnici;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
